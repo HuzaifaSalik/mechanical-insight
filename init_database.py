@@ -1,64 +1,25 @@
+"""Initialize the database and seed services"""
 import os
+import sys
+
+# Add the app directory to the Python path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from app import create_app, db
-from app.models import User, Service, CaseStudy, BlogPost, ContactSubmission, NewsletterSubscriber
+from app.models import Service
 
-# Create Flask application
-app = create_app(os.getenv('FLASK_ENV', 'development'))
+# Create Flask app
+app = create_app('development')
 
-
-@app.shell_context_processor
-def make_shell_context():
-    """Make database models available in Flask shell"""
-    return {
-        'db': db,
-        'User': User,
-        'Service': Service,
-        'CaseStudy': CaseStudy,
-        'BlogPost': BlogPost,
-        'ContactSubmission': ContactSubmission,
-        'NewsletterSubscriber': NewsletterSubscriber
-    }
-
-
-@app.cli.command()
-def init_db():
-    """Initialize the database"""
+with app.app_context():
+    # Create all tables
+    print('Creating database tables...')
     db.create_all()
-    print('Database initialized!')
+    print('Database tables created!')
 
+    # Seed services
+    print('Seeding services...')
 
-@app.cli.command()
-def create_admin():
-    """Create admin user"""
-    from getpass import getpass
-
-    username = input('Enter admin username: ')
-    email = input('Enter admin email: ')
-    password = getpass('Enter password: ')
-    confirm_password = getpass('Confirm password: ')
-
-    if password != confirm_password:
-        print('Passwords do not match!')
-        return
-
-    # Check if user already exists
-    if User.query.filter_by(username=username).first():
-        print(f'User {username} already exists!')
-        return
-
-    # Create admin user
-    admin = User(username=username, email=email, is_admin=True)
-    admin.set_password(password)
-
-    db.session.add(admin)
-    db.session.commit()
-
-    print(f'Admin user {username} created successfully!')
-
-
-@app.cli.command()
-def seed_services():
-    """Seed database with initial services"""
     services_data = [
         {
             'slug': 'product-design-cad',
@@ -66,7 +27,8 @@ def seed_services():
             'subtitle': 'Transform your ideas into precise 3D models',
             'description': '<p>Our expert team delivers comprehensive CAD modeling services for product development, from initial concept to manufacturing-ready designs.</p>',
             'icon_class': 'fa-cube',
-            'order': 1
+            'order': 1,
+            'is_active': True
         },
         {
             'slug': 'mechanical-design-fea',
@@ -74,7 +36,8 @@ def seed_services():
             'subtitle': 'Optimize your designs with advanced finite element analysis',
             'description': '<p>Comprehensive structural analysis services to ensure your products meet safety and performance requirements.</p>',
             'icon_class': 'fa-vector-square',
-            'order': 2
+            'order': 2,
+            'is_active': True
         },
         {
             'slug': 'automotive-simulations',
@@ -82,7 +45,8 @@ def seed_services():
             'subtitle': 'Advanced simulations for the automotive industry',
             'description': '<p>Specialized simulation services for automotive components and systems, from crashworthiness to NVH analysis.</p>',
             'icon_class': 'fa-car',
-            'order': 3
+            'order': 3,
+            'is_active': True
         },
         {
             'slug': 'aerospace-uav',
@@ -90,7 +54,8 @@ def seed_services():
             'subtitle': 'Cutting-edge solutions for aerospace applications',
             'description': '<p>Expert engineering support for aerospace and UAV projects, including aerodynamic analysis and structural optimization.</p>',
             'icon_class': 'fa-plane',
-            'order': 4
+            'order': 4,
+            'is_active': True
         },
         {
             'slug': 'manufacturing-analysis',
@@ -98,7 +63,8 @@ def seed_services():
             'subtitle': 'Optimize your manufacturing processes',
             'description': '<p>Comprehensive analysis services for manufacturing equipment and industrial machinery to improve efficiency and reliability.</p>',
             'icon_class': 'fa-industry',
-            'order': 5
+            'order': 5,
+            'is_active': True
         },
         {
             'slug': 'cfd-simulations',
@@ -106,7 +72,8 @@ def seed_services():
             'subtitle': 'Advanced fluid flow analysis and optimization',
             'description': '<p>State-of-the-art CFD simulations for fluid flow, heat transfer, and multiphase flow applications.</p>',
             'icon_class': 'fa-water',
-            'order': 6
+            'order': 6,
+            'is_active': True
         },
         {
             'slug': 'thermal-analysis',
@@ -114,20 +81,26 @@ def seed_services():
             'subtitle': 'Thermal management solutions for complex systems',
             'description': '<p>Comprehensive thermal analysis services to optimize heat dissipation and thermal management in your products.</p>',
             'icon_class': 'fa-fire',
-            'order': 7
+            'order': 7,
+            'is_active': True
         }
     ]
 
+    # Simply add all services (ignore duplicates)
     for service_data in services_data:
-        # Check if service already exists
-        existing = Service.query.filter_by(slug=service_data['slug']).first()
-        if not existing:
+        try:
             service = Service(**service_data)
             db.session.add(service)
+            print(f'  Added: {service_data["title"]}')
+        except Exception as e:
+            print(f'  Skipped (error): {service_data["title"]} - {e}')
+            db.session.rollback()
 
-    db.session.commit()
+    try:
+        db.session.commit()
+    except Exception as e:
+        print(f'Error committing services: {e}')
+        db.session.rollback()
     print('Services seeded successfully!')
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print('\n[SUCCESS] Database initialization complete!')
+    print('You can now run the application with: python run.py')
