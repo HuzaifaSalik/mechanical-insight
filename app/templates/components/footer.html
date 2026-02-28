@@ -1,0 +1,135 @@
+<footer class="bg-deep-navy text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <!-- Company Info -->
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-lg flex items-center justify-center">
+                        <span class="text-white font-heading font-bold text-xl">MI</span>
+                    </div>
+                    <span class="text-xl font-heading font-bold">Mechanical <span class="text-vibrant-cyan">Insight</span></span>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">
+                    Professional engineering and simulation services for automotive, aerospace, and industrial applications.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="#" class="w-10 h-10 bg-white/10 hover:bg-electric-blue rounded-lg flex items-center justify-center transition-colors duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 hover:bg-electric-blue rounded-lg flex items-center justify-center transition-colors duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 hover:bg-electric-blue rounded-lg flex items-center justify-center transition-colors duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 hover:bg-electric-blue rounded-lg flex items-center justify-center transition-colors duration-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-heading font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="{{ url_for('main.index') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">Home</a></li>
+                    <li><a href="{{ url_for('main.about') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">About Us</a></li>
+                    <li><a href="{{ url_for('main.services') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">Services</a></li>
+                    <li><a href="{{ url_for('portfolio.portfolio_list') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">Portfolio</a></li>
+                    <li><a href="{{ url_for('blog.blog_list') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">Blog</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h3 class="text-lg font-heading font-semibold mb-4">Our Services</h3>
+                <ul class="space-y-2">
+                    {% if all_services %}
+                        {% for service in all_services[:5] %}
+                            <li>
+                                <a href="{{ url_for('main.service_detail', slug=service.slug) }}" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">
+                                    {{ service.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% if all_services|length > 5 %}
+                            <li>
+                                <a href="{{ url_for('main.services') }}" class="text-vibrant-cyan hover:text-neon-green transition-colors duration-300 text-sm font-medium">
+                                    View All Services →
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-heading font-semibold mb-4">Get In Touch</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-map-marker-alt text-electric-blue mt-1"></i>
+                        <span class="text-gray-400 text-sm">NUST C&EME<br>Daewoo Terminal, Islamabad</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-phone text-electric-blue mt-1"></i>
+                        <a href="tel:+923159864459" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">
+                            +92 315 9864459
+                        </a>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-envelope text-electric-blue mt-1"></i>
+                        <a href="mailto:mejaz1448@gmail.com" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">
+                            mejaz1448@gmail.com
+                        </a>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fab fa-whatsapp text-electric-blue mt-1"></i>
+                        <a href="https://wa.me/923159864459" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">
+                            WhatsApp: +92 315 9864459
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="border-t border-white/10 pt-8 mb-8">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-2xl font-heading font-bold mb-2">Stay Updated</h3>
+                <p class="text-gray-400 mb-4">Subscribe to our newsletter for industry insights and updates</p>
+                <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-electric-blue transition-colors">
+                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-medium rounded-lg hover:shadow-lg hover:shadow-electric-blue/50 transition-all duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-white/10 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-gray-400 text-sm">
+                    &copy; {{ current_year or 2026 }} Mechanical Insight. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-vibrant-cyan transition-colors duration-300 text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Add current year to footer
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearElements = document.querySelectorAll('[data-year]');
+        const currentYear = new Date().getFullYear();
+        yearElements.forEach(el => el.textContent = currentYear);
+    });
+</script>

@@ -1,0 +1,143 @@
+<nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" x-data="{ open: false, servicesOpen: false }">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a href="{{ url_for('main.index') }}" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                    <span class="text-white font-heading font-bold text-xl">MI</span>
+                </div>
+                <span class="text-xl font-heading font-bold text-deep-navy">Mechanical <span class="text-electric-blue">Insight</span></span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="{{ url_for('main.index') }}" class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
+                    Home
+                </a>
+
+                <!-- Services Dropdown -->
+                <div class="relative" @mouseenter="servicesOpen = true" @mouseleave="servicesOpen = false">
+                    <button class="nav-link flex items-center space-x-1">
+                        <span>Services</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-300" :class="{ 'rotate-180': servicesOpen }"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div x-show="servicesOpen"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-150"
+                         x-transition:leave-start="opacity-100 translate-y-0"
+                         x-transition:leave-end="opacity-0 translate-y-1"
+                         class="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden"
+                         style="display: none;">
+                        <div class="p-2">
+                            {% if all_services %}
+                                {% for service in all_services %}
+                                    <a href="{{ url_for('main.service_detail', slug=service.slug) }}" class="block px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-electric-blue/10 to-vibrant-cyan/10 rounded-lg flex items-center justify-center group-hover:from-electric-blue/20 group-hover:to-vibrant-cyan/20 transition-colors">
+                                                <i class="fas {{ service.icon_class or 'fa-cog' }} text-electric-blue"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-medium text-sm text-gray-900">{{ service.title }}</p>
+                                                <p class="text-xs text-gray-500">{{ service.subtitle|truncate(40) }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                            <a href="{{ url_for('main.services') }}" class="block px-4 py-3 mt-2 text-center text-electric-blue font-medium hover:bg-electric-blue hover:text-white rounded-lg transition-colors duration-200">
+                                View All Services →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('portfolio.portfolio_list') }}" class="nav-link {% if request.endpoint and 'portfolio' in request.endpoint %}active{% endif %}">
+                    Portfolio
+                </a>
+
+                <a href="{{ url_for('blog.blog_list') }}" class="nav-link {% if request.endpoint and 'blog' in request.endpoint %}active{% endif %}">
+                    Blog
+                </a>
+
+                <a href="{{ url_for('main.about') }}" class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}">
+                    About
+                </a>
+
+                <!-- Contact Button (CTA) -->
+                <a href="{{ url_for('main.contact') }}" class="btn-primary">
+                    Contact Us
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button @click="open = !open" class="lg:hidden p-2 text-gray-600 hover:text-electric-blue transition-colors">
+                <i class="fas text-2xl" :class="open ? 'fa-times' : 'fa-bars'"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="open"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-1"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-1"
+         class="lg:hidden bg-white border-t border-gray-100 shadow-lg"
+         style="display: none;">
+        <div class="container mx-auto px-4 py-4 space-y-2">
+            <a href="{{ url_for('main.index') }}" class="block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a>
+
+            <!-- Services Submenu -->
+            <div>
+                <button @click="servicesOpen = !servicesOpen" class="w-full flex items-center justify-between py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">
+                    <span>Services</span>
+                    <i class="fas fa-chevron-down text-sm transition-transform duration-300" :class="{ 'rotate-180': servicesOpen }"></i>
+                </button>
+                <div x-show="servicesOpen" class="pl-4 mt-2 space-y-2" style="display: none;">
+                    {% if all_services %}
+                        {% for service in all_services %}
+                            <a href="{{ url_for('main.service_detail', slug=service.slug) }}" class="block py-2 px-4 text-sm text-gray-600 hover:text-electric-blue transition-colors">
+                                {{ service.title }}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                    <a href="{{ url_for('main.services') }}" class="block py-2 px-4 text-sm text-electric-blue font-medium">
+                        View All →
+                    </a>
+                </div>
+            </div>
+
+            <a href="{{ url_for('portfolio.portfolio_list') }}" class="block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Portfolio</a>
+            <a href="{{ url_for('blog.blog_list') }}" class="block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a>
+            <a href="{{ url_for('main.about') }}" class="block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About</a>
+            <a href="{{ url_for('main.contact') }}" class="block py-2 px-4 bg-electric-blue text-white rounded-lg hover:bg-vibrant-cyan transition-colors text-center font-medium">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav-link {
+        @apply text-gray-700 font-medium transition-colors duration-300 hover:text-electric-blue relative;
+    }
+
+    .nav-link.active {
+        @apply text-electric-blue;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-full h-0.5 bg-electric-blue;
+    }
+
+    #navbar.scrolled {
+        @apply bg-white/95 backdrop-blur-md shadow-lg;
+    }
+</style>
