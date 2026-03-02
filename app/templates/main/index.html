@@ -1,0 +1,639 @@
+{% extends "base.html" %}
+
+{% block title %}Mechanical Insight - Engineering & Simulation Services{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-deep-navy via-gray-900 to-deep-navy">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(0, 217, 255, 0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+
+    <!-- Animated Particles -->
+    <div id="particles" class="absolute inset-0"></div>
+
+    <!-- Hero Content -->
+    <div class="container mx-auto px-4 relative z-10 pt-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-heading font-bold text-white mb-6 hero-title">
+                Engineering Excellence
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-vibrant-cyan to-neon-green">
+                    Through Simulation
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">
+                Transform your ideas into reality with cutting-edge CAD modeling, FEA analysis, CFD simulations, and thermal engineering solutions.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 hero-cta">
+                <a href="{{ url_for('main.services') }}" class="px-8 py-4 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-heading font-semibold rounded-lg hover:shadow-2xl hover:shadow-electric-blue/50 transform hover:scale-105 transition-all duration-300">
+                    Explore Services
+                </a>
+                <a href="{{ url_for('main.contact') }}" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-heading font-semibold rounded-lg border-2 border-white/30 hover:bg-white hover:text-deep-navy transform hover:scale-105 transition-all duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <p class="text-gray-400 text-sm mt-4">Scroll to explore</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Our Services Section -->
+<section id="about-services" class="py-16 relative overflow-hidden bg-gradient-to-br from-deep-navy via-blue-900 to-electric-blue">
+    <!-- Animated Stars Background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <!-- Featured Image with Text Overlay -->
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl mb-10" data-aos="fade-up">
+                <img src="/static/images/portfolio/Main.jpeg" alt="Engineering Services" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-navy/90 via-deep-navy/40 to-transparent flex items-end">
+                    <div class="p-6 md:p-10 text-white">
+                        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-3">
+                            About Our <span class="text-vibrant-cyan">Services</span>
+                        </h2>
+                        <p class="text-base md:text-lg opacity-90 max-w-3xl">
+                            Professional engineering simulation and design solutions for reliable, efficient, and safe product development
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Description in Two Columns -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="space-y-3 text-white/90">
+                    <p class="text-sm leading-relaxed">
+                        We are a <strong class="text-white">professional engineering simulation and design service provider</strong>, specializing in CFD, FEA, and mechanical CAD solutions. Our mission is to help companies, startups, and industrial teams develop reliable, efficient, and safe products through advanced engineering analysis and design validation.
+                    </p>
+
+                    <p class="text-sm leading-relaxed">
+                        We deliver <strong class="text-vibrant-cyan">accurate, industry-grade simulations</strong> for structural strength, fluid flow, heat transfer, fatigue life prediction, design optimization, failure analysis, and performance validation across diverse engineering applications.
+                    </p>
+                </div>
+
+                <div class="space-y-3 text-white/90">
+                    <p class="text-sm leading-relaxed">
+                        We support a <strong class="text-white">wide range of industries</strong>, including automotive, aerospace, energy systems, pressure vessels, and industrial machinery. From concept development to final performance verification, we work closely with clients to meet engineering standards, safety requirements, and performance targets.
+                    </p>
+
+                    <p class="text-sm leading-relaxed">
+                        In addition to commercial projects, we actively engage in <strong class="text-vibrant-cyan">research collaboration</strong> with laboratories, R&D teams, and industrial research centers to support product development, testing, and innovation-driven engineering solutions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Capabilities in Compact Format -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 hover:border-vibrant-cyan hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-2">
+                        <div class="w-9 h-9 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-laptop-code text-white text-sm"></i>
+                        </div>
+                        <h3 class="text-base font-heading font-semibold text-white">Advanced Simulation</h3>
+                    </div>
+                    <p class="text-xs text-white/80 leading-relaxed">Industry-standard CFD, FEA, and thermal analysis tools for accurate predictions.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 hover:border-vibrant-cyan hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-2">
+                        <div class="w-9 h-9 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-users text-white text-sm"></i>
+                        </div>
+                        <h3 class="text-base font-heading font-semibold text-white">Expert Collaboration</h3>
+                    </div>
+                    <p class="text-xs text-white/80 leading-relaxed">Partnership with clients and research teams for tailored solutions.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 hover:border-vibrant-cyan hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-2">
+                        <div class="w-9 h-9 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-shield-check text-white text-sm"></i>
+                        </div>
+                        <h3 class="text-base font-heading font-semibold text-white">Quality Assurance</h3>
+                    </div>
+                    <p class="text-xs text-white/80 leading-relaxed">Accurate results, clear reports, and dependable support with integrity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Counter Section -->
+<section id="stats" class="py-20 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                <div class="text-5xl md:text-6xl font-heading font-bold mb-2">
+                    <span class="counter" data-target="150">0</span>+
+                </div>
+                <p class="text-xl opacity-90">Projects Completed</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-5xl md:text-6xl font-heading font-bold mb-2">
+                    <span class="counter" data-target="8">0</span>+
+                </div>
+                <p class="text-xl opacity-90">Years Experience</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-5xl md:text-6xl font-heading font-bold mb-2">
+                    <span class="counter" data-target="5">0</span>+
+                </div>
+                <p class="text-xl opacity-90">Industry Collaborations</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-5xl md:text-6xl font-heading font-bold mb-2">
+                    <span class="counter" data-target="98">0</span>%
+                </div>
+                <p class="text-xl opacity-90">Client Satisfaction</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Case Studies Section -->
+{% if featured_cases %}
+<section id="portfolio" class="py-20 relative overflow-hidden bg-gradient-to-br from-deep-navy via-blue-900 to-electric-blue">
+    <!-- Animated Stars Background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+                Featured <span class="text-vibrant-cyan">Projects</span>
+            </h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                Explore our portfolio of successful engineering and simulation projects
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {% for case in featured_cases %}
+                <div class="portfolio-card group relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                    <div class="aspect-video bg-gradient-to-br from-gray-700 to-gray-800 relative overflow-hidden">
+                        {% if case.thumbnail_url %}
+                            <img src="{{ case.thumbnail_url }}" alt="{{ case.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-project-diagram text-6xl text-white/50"></i>
+                            </div>
+                        {% endif %}
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-navy/90 via-deep-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        {% if case.client %}
+                            <span class="text-sm text-vibrant-cyan font-medium">{{ case.client }}</span>
+                        {% endif %}
+                        <h3 class="text-2xl font-heading font-semibold text-white mb-2 group-hover:text-vibrant-cyan transition-colors">
+                            {{ case.title }}
+                        </h3>
+                        <p class="text-white/80 mb-4">
+                            {{ case.challenge|striptags|truncate(150) if case.challenge else '' }}
+                        </p>
+                        <a href="{{ url_for('portfolio.case_study_detail', slug=case.slug) }}" class="inline-flex items-center text-vibrant-cyan font-medium hover:text-neon-green transition-colors group">
+                            View Case Study
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- View All CTA -->
+        <div class="text-center" data-aos="fade-up">
+            <a href="{{ url_for('portfolio.portfolio_list') }}" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-heading font-semibold rounded-lg hover:shadow-2xl hover:shadow-vibrant-cyan/50 transform hover:scale-105 transition-all duration-300">
+                View All Projects
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Latest Blog Posts Section -->
+{% if recent_posts %}
+<section id="blog" class="py-20 relative overflow-hidden bg-gradient-to-br from-deep-navy via-blue-900 to-electric-blue">
+    <!-- Animated Stars Background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+                Latest <span class="text-vibrant-cyan">Insights</span>
+            </h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                Stay updated with the latest trends and insights in engineering and simulation
+            </p>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {% for post in recent_posts %}
+                <article class="blog-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                    <div class="aspect-video bg-gradient-to-br from-gray-700 to-gray-800 relative overflow-hidden">
+                        {% if post.thumbnail_url %}
+                            <img src="{{ post.thumbnail_url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        {% else %}
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-newspaper text-6xl text-white/50"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-4 mb-3 text-sm text-white/80">
+                            {% if post.category %}
+                                <span class="px-3 py-1 bg-vibrant-cyan/20 text-vibrant-cyan rounded-full font-medium">{{ post.category }}</span>
+                            {% endif %}
+                            {% if post.published_at %}
+                                <span><i class="far fa-calendar mr-1"></i>{{ post.published_at|format_date }}</span>
+                            {% endif %}
+                        </div>
+                        <h3 class="text-xl font-heading font-semibold text-white mb-2 group-hover:text-vibrant-cyan transition-colors">
+                            {{ post.title }}
+                        </h3>
+                        <p class="text-white/80 mb-4">
+                            {{ post.subtitle or post.content|striptags|truncate(100) }}
+                        </p>
+                        <a href="{{ url_for('blog.blog_post', slug=post.slug) }}" class="inline-flex items-center text-vibrant-cyan font-medium hover:text-neon-green transition-colors group">
+                            Read More
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <!-- View Blog CTA -->
+        <div class="text-center" data-aos="fade-up">
+            <a href="{{ url_for('blog.blog_list') }}" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-heading font-semibold rounded-lg hover:shadow-2xl hover:shadow-vibrant-cyan/50 transform hover:scale-105 transition-all duration-300">
+                Visit Our Blog
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Client Reviews Section -->
+<section id="reviews" class="py-20 relative overflow-hidden bg-gradient-to-br from-deep-navy via-blue-900 to-electric-blue">
+    <!-- Animated Stars Background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+                Client <span class="text-vibrant-cyan">Reviews</span>
+            </h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                See what our clients say about working with us
+            </p>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        M
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">matheoestor</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="far fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">4.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    Would have preferred cheaper, but very good work, extremely nice and explains everything
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='15' fill='%23B22234'/%3E%3Cpath d='M0,0 h20 v1.15 h-20 z M0,2.3 h20 v1.15 h-20 z M0,4.6 h20 v1.15 h-20 z M0,6.9 h20 v1.15 h-20 z M0,9.2 h20 v1.15 h-20 z M0,11.5 h20 v1.15 h-20 z M0,13.8 h20 v1.2 h-20 z' fill='%23FFF'/%3E%3Crect width='8' height='7' fill='%233C3B6E'/%3E%3C/svg%3E" alt="United States" class="w-5 h-4 mr-2">
+                    <span>United States • 2 hours ago</span>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-neon-green to-electric-blue rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        K
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">kero2026</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">5.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    Really nice guy, really helpfull and skillfull. And fast. Gut gemachte Arbeit
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='5' fill='%23000'/%3E%3Crect y='5' width='20' height='5' fill='%23DD0000'/%3E%3Crect y='10' width='20' height='5' fill='%23FFCE00'/%3E%3C/svg%3E" alt="Germany" class="w-5 h-4 mr-2">
+                    <span>Germany • 1 day ago</span>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-vibrant-cyan to-purple rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        K
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">kero2026</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">5.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    Nice guy, You can trust him. He simulated a difficult simulation in Ansys. Great!
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='5' fill='%23000'/%3E%3Crect y='5' width='20' height='5' fill='%23DD0000'/%3E%3Crect y='10' width='20' height='5' fill='%23FFCE00'/%3E%3C/svg%3E" alt="Germany" class="w-5 h-4 mr-2">
+                    <span>Germany • 4 days ago</span>
+                </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-bright-orange to-electric-blue rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        H
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">haldirich</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">5.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    This guy is really good, did a great work.
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='5' fill='%23E30A17'/%3E%3Crect y='5' width='20' height='10' fill='%23FFF'/%3E%3C/svg%3E" alt="Turkey" class="w-5 h-4 mr-2">
+                    <span>Turkey • 6 days ago</span>
+                </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple to-vibrant-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        F
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">filippoporro</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">5.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    A very gentle man.
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='5' fill='%23009246'/%3E%3Crect y='5' width='20' height='5' fill='%23FFF'/%3E%3Crect y='10' width='20' height='5' fill='%23CE2B37'/%3E%3C/svg%3E" alt="Italy" class="w-5 h-4 mr-2">
+                    <span>Italy • 2 weeks ago</span>
+                </div>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="review-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:border-vibrant-cyan hover:bg-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-electric-blue to-neon-green rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        M
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-heading font-semibold text-white">muhammadahma334</h4>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-2 text-sm text-white/90">5.0</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/80 mb-3">
+                    Working with Ejaz was great. He is punctual professional and understanding. nice work and fast results, Many thanks to him
+                </p>
+                <div class="flex items-center text-sm text-white/70">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15'%3E%3Crect width='20' height='5' fill='%23009739'/%3E%3Crect y='5' width='20' height='5' fill='%23FFF'/%3E%3Crect y='10' width='20' height='5' fill='%23000'/%3E%3Crect width='6' height='15' fill='%23CE1126'/%3E%3C/svg%3E" alt="UAE" class="w-5 h-4 mr-2">
+                    <span>United Arab Emirates • 2 years ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section id="cta" class="py-20 bg-gradient-to-br from-deep-navy via-electric-blue to-vibrant-cyan text-white relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">
+                Ready to Bring Your Project to Life?
+            </h2>
+            <p class="text-xl opacity-90 mb-8">
+                Let's discuss how our engineering expertise can help you achieve your goals. Get in touch with our team today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ url_for('main.contact') }}" class="px-8 py-4 bg-white text-electric-blue font-heading font-semibold rounded-lg hover:bg-neon-green hover:text-deep-navy transform hover:scale-105 transition-all duration-300 shadow-xl">
+                    Start Your Project
+                </a>
+                <a href="{{ url_for('main.services') }}" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-heading font-semibold rounded-lg border-2 border-white/30 hover:bg-white hover:text-deep-navy transform hover:scale-105 transition-all duration-300">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+/* Starry Night Sky Animation */
+.stars-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 90px 10px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars-move 100s linear infinite;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(1px 1px at 40px 60px, #fff, transparent),
+        radial-gradient(1px 1px at 110px 90px, #ddd, transparent),
+        radial-gradient(1px 1px at 170px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 10px 100px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: stars-move 150s linear infinite;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(1px 1px at 75px 125px, #fff, transparent),
+        radial-gradient(1px 1px at 155px 45px, #ddd, transparent),
+        radial-gradient(1px 1px at 5px 75px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: stars-move 200s linear infinite;
+}
+
+@keyframes stars-move {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2000px); }
+}
+
+/* Service Card Hover Effects */
+.service-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Observe counters and animate when in view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                animateCounter(counter);
+                counterObserver.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+</script>
+{% endblock %}

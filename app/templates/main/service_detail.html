@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.title }} - Mechanical Insight{% endblock %}
+
+{% block content %}
+<section class="pt-32 pb-16 bg-gradient-to-br from-deep-navy to-electric-blue text-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">
+                {{ service.title }}
+            </h1>
+            {% if service.subtitle %}
+                <p class="text-xl opacity-90">{{ service.subtitle }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            {% if service.image_url %}
+                <div class="mb-12 rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                    <img src="{{ service.image_url }}" alt="{{ service.title }}" class="w-full h-auto">
+                </div>
+            {% endif %}
+
+            <div class="prose prose-lg max-w-none">
+                {{ service.description|safe }}
+            </div>
+
+            {% if related_cases %}
+                <div class="mt-16">
+                    <h2 class="text-3xl font-heading font-bold text-deep-navy mb-8">Related Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {% for case in related_cases %}
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+                                <div class="aspect-video bg-gray-200"></div>
+                                <div class="p-6">
+                                    <h3 class="font-heading font-semibold text-lg mb-2">{{ case.title }}</h3>
+                                    <a href="{{ url_for('portfolio.case_study_detail', slug=case.slug) }}" class="text-electric-blue hover:text-vibrant-cyan">
+                                        View Case Study →
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

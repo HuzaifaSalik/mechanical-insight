@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services - Mechanical Insight{% endblock %}
+
+{% block content %}
+<!-- Starry Background Section -->
+<section class="pt-24 pb-20 relative overflow-hidden bg-gradient-to-br from-deep-navy via-blue-900 to-electric-blue min-h-screen">
+    <!-- Animated Stars Background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Page Header -->
+        <div class="max-w-4xl mx-auto text-center mb-16 pt-8" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-heading font-bold text-white mb-4">
+                Our <span class="text-vibrant-cyan">Services</span>
+            </h1>
+            <p class="text-xl text-white/90">
+                Comprehensive engineering and simulation solutions tailored to your industry needs
+            </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {% if services %}
+                {% for service in services %}
+                    <a href="{{ url_for('main.service_detail', slug=service.slug) }}"
+                       class="service-card group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/20 hover:border-vibrant-cyan hover:scale-105 transition-all duration-300 cursor-pointer"
+                       data-aos="fade-up"
+                       data-aos-delay="{{ loop.index0 * 50 }}">
+
+                        <!-- Icon -->
+                        <div class="w-16 h-16 bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas {{ service.icon_class or 'fa-cog' }} text-3xl text-white"></i>
+                        </div>
+
+                        <!-- Title -->
+                        <h3 class="text-2xl font-heading font-bold text-white mb-3 group-hover:text-vibrant-cyan transition-colors">
+                            {{ service.title }}
+                        </h3>
+
+                        <!-- Subtitle/Description -->
+                        <p class="text-white/80 mb-6 text-sm leading-relaxed">
+                            {{ service.subtitle or service.description|striptags|truncate(100) }}
+                        </p>
+
+                        <!-- Learn More Arrow -->
+                        <div class="inline-flex items-center text-vibrant-cyan font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            Explore Service
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="col-span-full text-center py-12">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-12">
+                        <i class="fas fa-tools text-6xl text-white/50 mb-4"></i>
+                        <p class="text-white/80 text-lg">No services available yet. Please check back soon!</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Bottom Section: Service Buttons Grid -->
+    <div class="container mx-auto px-4 relative z-10 mt-16">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+                Explore Each <span class="text-vibrant-cyan">Service</span>
+            </h2>
+            <p class="text-lg text-white/90 max-w-3xl mx-auto">
+                Click on any service to learn more about our specialized solutions
+            </p>
+        </div>
+
+        <!-- Service Buttons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
+            {% if services %}
+                {% for service in services %}
+                    <a href="{{ url_for('main.service_detail', slug=service.slug) }}"
+                       class="group bg-gradient-to-br from-electric-blue/20 to-vibrant-cyan/20 backdrop-blur-md border-2 border-white/30 rounded-xl p-6 hover:border-vibrant-cyan hover:bg-white/10 hover:scale-105 transition-all duration-300 cursor-pointer"
+                       data-aos="zoom-in"
+                       data-aos-delay="{{ loop.index0 * 50 }}">
+
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-vibrant-cyan to-neon-green rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas {{ service.icon_class or 'fa-cog' }} text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-white group-hover:text-vibrant-cyan transition-colors">
+                                {{ service.title }}
+                            </h3>
+                        </div>
+
+                        <div class="flex items-center text-vibrant-cyan font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            <span>View Details</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-heading font-bold text-white mb-3">
+                    Need a Custom Solution?
+                </h3>
+                <p class="text-white/80 mb-6">
+                    We specialize in tailored engineering solutions. Contact us to discuss your specific requirements.
+                </p>
+                <a href="{{ url_for('main.contact') }}" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-heading font-semibold rounded-lg hover:shadow-2xl hover:shadow-vibrant-cyan/50 transform hover:scale-105 transition-all duration-300">
+                    Get In Touch
+                    <i class="fas fa-paper-plane ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Starry Night Sky Animation */
+.stars-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 90px 10px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars-move 100s linear infinite;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(1px 1px at 40px 60px, #fff, transparent),
+        radial-gradient(1px 1px at 110px 90px, #ddd, transparent),
+        radial-gradient(1px 1px at 170px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 10px 100px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: stars-move 150s linear infinite;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(1px 1px at 75px 125px, #fff, transparent),
+        radial-gradient(1px 1px at 155px 45px, #ddd, transparent),
+        radial-gradient(1px 1px at 5px 75px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: stars-move 200s linear infinite;
+}
+
+@keyframes stars-move {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2000px); }
+}
+
+/* Service Card Hover Effects */
+.service-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Mechanical Insight{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="pt-32 pb-16 bg-gradient-to-br from-deep-navy to-electric-blue text-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">
+                Get In Touch
+            </h1>
+            <p class="text-xl opacity-90">
+                Let's discuss how we can help bring your engineering project to life
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            <!-- Contact Form -->
+            <div class="lg:col-span-3" data-aos="fade-right">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                    <h2 class="text-3xl font-heading font-bold text-deep-navy mb-6">
+                        Send Us a Message
+                    </h2>
+
+                    <form id="contactForm" method="POST" action="{{ url_for('main.contact') }}" class="space-y-6">
+                        {{ form.hidden_tag() }}
+
+                        <!-- Name -->
+                        <div>
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-input", placeholder="John Doe") }}
+                            {% if form.name.errors %}
+                                <p class="form-error">{{ form.name.errors[0] }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-input", placeholder="john@example.com") }}
+                            {% if form.email.errors %}
+                                <p class="form-error">{{ form.email.errors[0] }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Company and Phone -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                {{ form.company.label(class="form-label") }}
+                                {{ form.company(class="form-input", placeholder="Your Company") }}
+                            </div>
+                            <div>
+                                {{ form.phone.label(class="form-label") }}
+                                {{ form.phone(class="form-input", placeholder="+1 (234) 567-890") }}
+                            </div>
+                        </div>
+
+                        <!-- Service Interest -->
+                        <div>
+                            {{ form.service_interest.label(class="form-label") }}
+                            {{ form.service_interest(class="form-input") }}
+                        </div>
+
+                        <!-- Message -->
+                        <div>
+                            {{ form.message.label(class="form-label") }}
+                            {{ form.message(class="form-input form-textarea", placeholder="Tell us about your project...") }}
+                            {% if form.message.errors %}
+                                <p class="form-error">{{ form.message.errors[0] }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Newsletter -->
+                        <div class="flex items-center">
+                            {{ form.newsletter(class="mr-2") }}
+                            {{ form.newsletter.label(class="text-gray-700") }}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div>
+                            {{ form.submit(class="w-full px-8 py-4 bg-gradient-to-r from-electric-blue to-vibrant-cyan text-white font-heading font-semibold rounded-lg hover:shadow-2xl hover:shadow-electric-blue/50 transform hover:scale-105 transition-all duration-300 cursor-pointer") }}
+                        </div>
+
+                        <!-- Form Status Messages -->
+                        <div id="formMessage" class="hidden"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="lg:col-span-2 space-y-8" data-aos="fade-left">
+                <!-- Office Info -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-heading font-bold text-deep-navy mb-6">
+                        Contact Information
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-electric-blue text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Office Address</h4>
+                                <p class="text-gray-600">NUST C&EME<br>Daewoo Terminal, Islamabad</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-electric-blue text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
+                                <a href="tel:+923159864459" class="text-gray-600 hover:text-electric-blue transition-colors">
+                                    +92 315 9864459
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-electric-blue text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                                <a href="mailto:mejaz1448@gmail.com" class="text-gray-600 hover:text-electric-blue transition-colors">
+                                    mejaz1448@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-electric-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fab fa-whatsapp text-electric-blue text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">WhatsApp</h4>
+                                <a href="https://wa.me/923159864459" class="text-gray-600 hover:text-electric-blue transition-colors">
+                                    +92 315 9864459
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="bg-gradient-to-br from-electric-blue to-vibrant-cyan rounded-2xl shadow-xl p-8 text-white">
+                    <h3 class="text-2xl font-heading font-bold mb-6">
+                        Follow Us
+                    </h3>
+                    <p class="mb-6 opacity-90">
+                        Stay connected with us on social media for updates and insights
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Response Time -->
+                <div class="bg-neon-green rounded-2xl shadow-xl p-8 text-deep-navy">
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-bolt text-4xl"></i>
+                        <div>
+                            <h3 class="text-xl font-heading font-bold mb-2">
+                                Quick Response
+                            </h3>
+                            <p>
+                                We typically respond to all inquiries within 24 hours during business days.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock %}
