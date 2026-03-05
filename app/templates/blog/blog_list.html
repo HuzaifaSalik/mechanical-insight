@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - Mechanical Insight{% endblock %}
+
+{% block content %}
+<section class="pt-32 pb-16 bg-gradient-to-br from-deep-navy to-electric-blue text-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">
+                Engineering Insights
+            </h1>
+            <p class="text-xl opacity-90">
+                Latest articles and industry insights
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        {% if posts.items %}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                {% for post in posts.items %}
+                    <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-aos="fade-up">
+                        <div class="aspect-video bg-gray-200"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-heading font-semibold mb-2">{{ post.title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ post.subtitle|truncate(100) }}</p>
+                            <a href="{{ url_for('blog.blog_post', slug=post.slug) }}" class="text-electric-blue hover:text-vibrant-cyan">
+                                Read More →
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <p class="text-gray-500 text-lg">No blog posts available yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

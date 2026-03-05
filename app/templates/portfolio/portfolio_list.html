@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - Mechanical Insight{% endblock %}
+
+{% block content %}
+<section class="pt-32 pb-16 bg-gradient-to-br from-deep-navy to-electric-blue text-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">
+                Our Portfolio
+            </h1>
+            <p class="text-xl opacity-90">
+                Explore our successful engineering and simulation projects
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        {% if case_studies.items %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {% for case in case_studies.items %}
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-aos="fade-up">
+                        <div class="aspect-video bg-gray-200"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-heading font-semibold mb-2">{{ case.title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ case.challenge|striptags|truncate(100) }}</p>
+                            <a href="{{ url_for('portfolio.case_study_detail', slug=case.slug) }}" class="text-electric-blue hover:text-vibrant-cyan">
+                                View Case Study →
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <p class="text-gray-500 text-lg">No case studies available yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

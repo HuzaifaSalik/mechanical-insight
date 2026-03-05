@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Mechanical Insight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-2xl p-8">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white font-bold text-2xl">MI</span>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900">Admin Login</h1>
+                <p class="text-gray-600 mt-2">Mechanical Insight Dashboard</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('admin_panel.login') }}">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Username</label>
+                        <input type="text" name="username" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-all">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('main.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">
+                    <i class="fas fa-arrow-left mr-1"></i>
+                    Back to Website
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
