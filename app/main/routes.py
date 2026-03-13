@@ -45,3 +45,52 @@ def service_detail(slug):
                          service=service,
                          related_cases=related_cases,
                          other_services=other_services)
+
+
+@main_bp.route('/contact', methods=['GET', 'POST'])
+def contact():
+    """Contact page with form submission and validation"""
+    from app.main.forms import ContactForm
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        # Create contact submission record
+        submission = ContactSubmission(
+            name=form.name.data,
+            email=form.email.data,
+            company=form.company.data,
+            phone=form.phone.data,
+            service_interest=form.service_interest.data,
+            message=form.message.data,
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent'),
+            status='new'
+        )
+
+        try:
+            db.session.add(submission)
+            db.session.commit()
+
+            # Handle AJAX requests
+            if request.is_json or request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({
+                    'success': True,
+                    'message': 'Thank you for contacting us! We will get back to you soon.'
+                })
+
+            flash('Thank you for contacting us! We will get back to you soon.', 'success')
+            return redirect(url_for('main.contact'))
+
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error saving contact submission: {e}")
+
+            if request.is_json or request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({
+                    'success': False,
+                    'message': 'An error occurred. Please try again later.'
+                }), 500
+
+            flash('An error occurred. Please try again later.', 'danger')
+
+    return render_template('main/contact.html', form=form)
