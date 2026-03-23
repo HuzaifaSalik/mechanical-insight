@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if post else 'New' }} Blog Post - Admin{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{{ 'Edit' if post else 'Create New' }} Blog Post</h1>
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" name="title" value="{{ post.title if post else '' }}" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Category</label>
+                <select name="category" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <option value="engineering">Engineering</option>
+                    <option value="cfd">CFD Analysis</option>
+                    <option value="fea">FEA Analysis</option>
+                    <option value="cad">CAD Modeling</option>
+                    <option value="industry">Industry News</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Content</label>
+                <textarea name="content" rows="15" 
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">{{ post.content if post else '' }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tags (comma-separated)</label>
+                <input type="text" name="tags" value="{{ post.tags if post else '' }}" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div class="flex items-center space-x-4">
+                <label class="flex items-center">
+                    <input type="checkbox" name="is_published" class="rounded border-gray-300">
+                    <span class="ml-2 text-sm text-gray-700">Publish immediately</span>
+                </label>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <a href="{{ url_for('admin_panel.dashboard') }}" class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</a>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    {{ 'Update' if post else 'Create' }} Post
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
