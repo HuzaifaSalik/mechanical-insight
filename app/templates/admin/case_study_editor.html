@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if case_study else 'New' }} Case Study - Admin{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{{ 'Edit' if case_study else 'Create New' }} Case Study</h1>
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" name="title" value="{{ case_study.title if case_study else '' }}" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Client Name</label>
+                <input type="text" name="client" value="{{ case_study.client if case_study else '' }}" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Industry</label>
+                <select name="industry" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <option value="automotive">Automotive</option>
+                    <option value="aerospace">Aerospace</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="energy">Energy</option>
+                    <option value="consumer">Consumer Products</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Challenge</label>
+                <textarea name="challenge" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">{{ case_study.challenge if case_study else '' }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Solution</label>
+                <textarea name="solution" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">{{ case_study.solution if case_study else '' }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Results</label>
+                <textarea name="results" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">{{ case_study.results if case_study else '' }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Technologies (comma-separated)</label>
+                <input type="text" name="technologies" value="{{ case_study.technologies if case_study else '' }}" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div class="flex justify-end space-x-3">
+                <a href="{{ url_for('admin_panel.dashboard') }}" class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</a>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    {{ 'Update' if case_study else 'Create' }} Case Study
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
