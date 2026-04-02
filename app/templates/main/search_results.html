@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% if query %} for "{{ query }}"{% endif %}{% endblock %}
+{% block content %}
+<section class="py-20 bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Search Bar -->
+            <div class="mb-12">
+                <h1 class="text-3xl font-bold text-white mb-6">Search</h1>
+                <form action="{{ url_for('main.search') }}" method="GET" class="flex gap-3">
+                    <input type="text" name="q" value="{{ query }}" placeholder="Search blog posts, case studies, services..."
+                           class="flex-1 px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                    <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Search</button>
+                </form>
+            </div>
+
+            {% if query %}
+            <p class="text-gray-400 mb-8">
+                Found <span class="text-white font-semibold">{{ results.total }}</span> result{{ 's' if results.total != 1 }} for "{{ query }}"
+            </p>
+
+            {% if results.total == 0 %}
+            <div class="text-center py-12">
+                <p class="text-gray-400 text-lg">No results found for "{{ query }}"</p>
+                <p class="text-gray-500 mt-2">Try different keywords or browse our services</p>
+            </div>
+            {% endif %}
+
+            <!-- Services Results -->
+            {% if results.services %}
+            <div class="mb-10">
+                <h2 class="text-xl font-semibold text-blue-400 mb-4">Services</h2>
+                {% for service in results.services %}
+                <a href="{{ url_for('main.service_detail', slug=service.slug) }}" class="block bg-gray-800 rounded-lg p-4 mb-3 hover:bg-gray-750 transition border border-gray-700">
+                    <h3 class="text-white font-medium">{{ service.title }}</h3>
+                    <p class="text-gray-400 text-sm mt-1">{{ service.short_description }}</p>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Blog Results -->
+            {% if results.blog_posts %}
+            <div class="mb-10">
+                <h2 class="text-xl font-semibold text-green-400 mb-4">Blog Posts</h2>
+                {% for post in results.blog_posts %}
+                <a href="{{ url_for('blog.blog_post', slug=post.slug) }}" class="block bg-gray-800 rounded-lg p-4 mb-3 hover:bg-gray-750 transition border border-gray-700">
+                    <h3 class="text-white font-medium">{{ post.title }}</h3>
+                    <p class="text-gray-400 text-sm mt-1">{{ post.subtitle or '' }}</p>
+                    <span class="text-xs text-gray-500 mt-2 inline-block">{{ post.category }} • {{ post.published_at.strftime('%b %d, %Y') if post.published_at else '' }}</span>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Portfolio Results -->
+            {% if results.case_studies %}
+            <div class="mb-10">
+                <h2 class="text-xl font-semibold text-purple-400 mb-4">Case Studies</h2>
+                {% for case in results.case_studies %}
+                <a href="{{ url_for('portfolio.case_study_detail', slug=case.slug) }}" class="block bg-gray-800 rounded-lg p-4 mb-3 hover:bg-gray-750 transition border border-gray-700">
+                    <h3 class="text-white font-medium">{{ case.title }}</h3>
+                    <p class="text-gray-400 text-sm mt-1">{{ case.industry }} • {{ case.technologies }}</p>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
