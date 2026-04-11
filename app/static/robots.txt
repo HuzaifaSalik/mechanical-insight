@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /static/uploads/
+
+Sitemap: https://mechanical-insight.onrender.com/sitemap.xml
