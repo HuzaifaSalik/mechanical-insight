@@ -377,3 +377,5 @@ Designed and developed for Company Insight.
 
 Last updated: January 2026
 
+# Mechanical Insight - Sprint Progress
+## Completed: Sprint 1, Sprint 2, Sprint 3
